@@ -5,11 +5,11 @@ import { STORAGE } from "../../config/vars";
 
 function MyCityList () {
   const { myCities, setMyCities, removeCity } = useContext(MyCitiesContext);
-  const [ myCitiesSaved ] = useLocalStorage(STORAGE.KEY, STORAGE.INITIAL_VALUE);
+  // const [ myCitiesSaved ] = useLocalStorage(STORAGE.KEY, STORAGE.INITIAL_VALUE);
 
-  useEffect(() => {
-    if (myCitiesSaved && myCitiesSaved.length > 0) setMyCities(myCitiesSaved);
-  }, [myCitiesSaved]);
+  // useEffect(() => {
+  //   if (myCitiesSaved && myCitiesSaved.length > 0) setMyCities(myCitiesSaved);
+  // }, [myCitiesSaved]);
 
   const removeCityFromContext = (city) => removeCity(city);
   const round = (value, decimals) => Number(Math.round(value+'e'+decimals)+'e-'+decimals);
