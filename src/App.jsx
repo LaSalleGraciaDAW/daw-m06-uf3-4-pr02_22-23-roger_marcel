@@ -5,6 +5,8 @@ import NotFound from "./pages/NotFound";
 import MyCityList from "./pages/MyCityList";
 import CountryList from "./pages/CountryList";
 import CityList from "./pages/CityList";
+import 'bootstrap/dist/css/bootstrap.min.css';  
+
 
 function App() {
   const [ countrySelected, setCountrySelected ] = useState(null);

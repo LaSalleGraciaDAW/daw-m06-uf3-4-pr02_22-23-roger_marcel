@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import City from "./components/City";
 
 function CityList({countrySelected, setCountrySelected}) {
     const {countryId} = useParams();
@@ -33,6 +34,9 @@ function CityList({countrySelected, setCountrySelected}) {
             <div>
                 <h2>Search cities in {countrySelected}</h2>
                 Buscar Ciutat: <input type="text" onChange={(e) => setSearchValue(e.target.value)}></input>
+                {cities.map((city) => (
+                    <City key={city.id} name={city.name} />
+                ))}
             </div>
         );
 }
