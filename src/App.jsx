@@ -5,12 +5,14 @@ import NotFound from "./pages/NotFound";
 import MyCityList from "./pages/MyCityList";
 import CountryList from "./pages/CountryList";
 import CityList from "./pages/CityList";
+import Search from "./pages/CountryList/components/Search";
 
 function App() {
   const [ countrySelected, setCountrySelected ] = useState(null);
 
   return (
-    <MyCitiesProvider>
+    <>
+    {/* <MyCitiesProvider> */}
       <header>
         <h1>React Practise</h1>
         <nav>
@@ -21,15 +23,17 @@ function App() {
         </nav>
       </header>
       <main>
-        <Routes>
+        < Search />
+        {/* <Routes>
           <Route path="/" element={<MyCityList />} />
           <Route path="/countries" element={<CountryList {...{countrySelected, setCountrySelected}}/>}>
             <Route path=":countryId/cities" element={<CityList {...{countrySelected, setCountrySelected}}/>} />
           </Route>
           <Route path="*" element={<NotFound />} />
-        </Routes>
+        </Routes> */}
       </main>
-    </MyCitiesProvider>
+    {/* </MyCitiesProvider> */}
+    </>
   );
 }
 
