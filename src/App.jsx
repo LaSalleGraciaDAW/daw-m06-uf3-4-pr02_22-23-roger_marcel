@@ -23,10 +23,10 @@ function App() {
         </nav>
       </header>
       <main>
-        < Search />
+      
         {/* <Routes>
           <Route path="/" element={<MyCityList />} />
-          <Route path="/countries" element={<CountryList {...{countrySelected, setCountrySelected}}/>}>
+          <Route path="/countries" element={ < Search /><CountryList {...{countrySelected, setCountrySelected}}/>}>
             <Route path=":countryId/cities" element={<CityList {...{countrySelected, setCountrySelected}}/>} />
           </Route>
           <Route path="*" element={<NotFound />} />
