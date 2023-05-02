@@ -17,6 +17,8 @@ function Search () {
                         })
                         setCountries(filteredCountries);
                     })
+            } else {
+                setCountries([]);
             }
         }, 500)
         return () => {
@@ -32,10 +34,12 @@ function Search () {
             </h1>
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
             <ul>
-                {countries.map((country) => (
+                { search === '' ? null :
+                countries.map((country) => (
                     <a href={`/countries/${country.id}/cities`}>
-                        <li key={country.name}>
+                        <li key={country.id}>
                             {country.name}
+                            {country.emoji}
                         </li>
                     </a>
                 ))}
