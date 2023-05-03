@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 
 function useFetch(url) {
-    const [state, setState] = useState({ isLoading: true, response: null });
+    const [state, setState] = useState({response: null, error: true});
 
     useEffect(() => {
         async function getData() {
             const response = await fetch(url);
             if (response.ok) {
-                console.log(url);
                 const data = await response.json();
-                setState({ isLoading: false, response: data });
+                setState({response: data, error: false});
             }
         }
 

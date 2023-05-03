@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react';
+import { Link, useOutlet } from 'react-router-dom';
 
-function Search () {
+function Search ({setCountrySelected}) {
     const [search, setSearch] = useState('');
     const [countries, setCountries] = useState(
         []
     );
+    const outlet = useOutlet();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -36,14 +38,18 @@ function Search () {
             <ul>
                 { search === '' ? null :
                 countries.map((country) => (
-                    <a href={`/countries/${country.id}/cities`}>
-                        <li key={country.id}>
-                            {country.name}
-                            {country.emoji}
-                        </li>
-                    </a>
+                    // <a href={`/countries/${country.id}/cities`}>
+                    //     <li key={country.id}>
+                    //         {country.name}
+                    //         {country.emoji}
+                    //     </li>
+                    // </a>
+                    <Link key={country.id} onClick={() => setCountrySelected(country.name)} to={`${country.id}/cities`}>
+                        {country.name}
+                    </Link>
                 ))}
             </ul>
+            {outlet || <p>Please select a country.</p>}
         </div>
     )
 }
