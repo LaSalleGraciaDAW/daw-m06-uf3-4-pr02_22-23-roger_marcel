@@ -19,7 +19,7 @@ function MyCityList () {
     <div>
       <h1>My Cities</h1>
       <ul>
-        {cities.map(city => (
+        {cities?.map(city => (
           <li key={city.id}>
             <div><strong>{city.name}</strong></div>
             <div>State: {city.state_name}</div>
