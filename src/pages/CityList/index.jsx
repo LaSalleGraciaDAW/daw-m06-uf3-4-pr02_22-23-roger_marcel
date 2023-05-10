@@ -8,6 +8,7 @@ function CityList({countrySelected, setCountrySelected}) {
 
     const [searchValue, setSearchValue] = useState();
     const [cities, setCities] = useState([]);
+    const [citiesFilterd, setCitiesFilterd] = useState([])
     const data = useFetch("http://localhost:3000/db/cities.json");
 
     useEffect(() => {
@@ -15,13 +16,16 @@ function CityList({countrySelected, setCountrySelected}) {
             const filteredCities = data.response.filter(city => city.country_id == countryId);
             console.log(filteredCities)
             setCities(filteredCities);
+            setCitiesFilterd(cities);
         }
     }, [data, countryId]);
 
     useEffect(() => {
+        console.log(cities);
+        setCitiesFilterd(cities)
         const timer = setTimeout(() => {
             if (searchValue) {
-                setCities((prevCities) => prevCities.filter(cities => cities.name.includes(searchValue)))
+                setCitiesFilterd((prevCities) => prevCities.filter(cities => cities.name.toLowerCase().includes(searchValue)))
             }
         }, 500);
 
@@ -34,8 +38,8 @@ function CityList({countrySelected, setCountrySelected}) {
             <div>
                 <h2>Search cities in {countrySelected}</h2>
                 Buscar Ciutat: <input type="text" onChange={(e) => setSearchValue(e.target.value)}></input>
-                {cities ? cities.map((city) => (
-                    <City key={city.id} city={city} />
+                {citiesFilterd ? citiesFilterd.map((city) => (
+                    <City key={city.id} name={city.name} />
                 )) : <p>No cities</p>}
             </div>
         );

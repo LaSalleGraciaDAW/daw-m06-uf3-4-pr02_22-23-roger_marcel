@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
 import { Link, useOutlet } from 'react-router-dom';
+import useFetch from '../../../hooks/useFetch';
+import Country from './Country';
 
 function Search ({setCountrySelected}) {
     const [search, setSearch] = useState('');
@@ -7,21 +9,17 @@ function Search ({setCountrySelected}) {
         []
     );
     const outlet = useOutlet();
+    const data = useFetch('/db/countries.json')
 
     useEffect(() => {
+        
         const timer = setTimeout(() => {
-            if (countries) {
-                fetch('/db/countries.json')
-                    .then((response) => response.json())
-                    .then((data) => {
-                        const filteredCountries = data.filter((country) => {
-                            return country.name.toLowerCase().includes(search.toLowerCase());
-                        })
-                        setCountries(filteredCountries);
-                    })
-            } else {
-                setCountries([]);
-            }
+            if (data.response && !data.error) {
+                const filtredCities = data.response.filter((country) => {
+                    return country.name.toLowerCase().includes(search.toLocaleLowerCase())
+                })
+                setCountries(filtredCities)
+            }    
         }, 500)
         return () => {
             console.log('use Effect clean');
@@ -38,15 +36,11 @@ function Search ({setCountrySelected}) {
             <ul>
                 { search === '' ? null :
                 countries.map((country) => (
-                    // <a href={`/countries/${country.id}/cities`}>
-                    //     <li key={country.id}>
-                    //         {country.name}
-                    //         {country.emoji}
-                    //     </li>
-                    // </a>
-                    <Link key={country.id} onClick={() => setCountrySelected(country.name)} to={`${country.id}/cities`}>
-                        {country.name}
-                    </Link>
+                    <li>
+                        <Link key={country.id} onClick={() => setCountrySelected(country.name)} to={`${country.id}/cities`}>
+                            <Country country={country} />
+                        </Link>
+                    </li>
                 ))}
             </ul>
             {outlet || <p>Please select a country.</p>}
