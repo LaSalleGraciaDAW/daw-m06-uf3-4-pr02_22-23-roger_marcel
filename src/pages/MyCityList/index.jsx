@@ -4,12 +4,13 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import { STORAGE } from "../../config/vars";
 
 function MyCityList () {
-  const { myCities, setMyCities, removeCity } = useContext(MyCitiesContext);
+  const { cities, removeCity } = useContext(MyCitiesContext);
   // const [ myCitiesSaved ] = useLocalStorage(STORAGE.KEY, STORAGE.INITIAL_VALUE);
 
   // useEffect(() => {
   //   if (myCitiesSaved && myCitiesSaved.length > 0) setMyCities(myCitiesSaved);
   // }, [myCitiesSaved]);
+  console.log(cities)
 
   const removeCityFromContext = (city) => removeCity(city);
   const round = (value, decimals) => Number(Math.round(value+'e'+decimals)+'e-'+decimals);
@@ -18,7 +19,7 @@ function MyCityList () {
     <div>
       <h1>My Cities</h1>
       <ul>
-        {myCities.map(city => (
+        {cities.map(city => (
           <li key={city.id}>
             <div><strong>{city.name}</strong></div>
             <div>State: {city.state_name}</div>
