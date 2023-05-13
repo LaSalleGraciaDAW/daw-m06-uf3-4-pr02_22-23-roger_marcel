@@ -39,7 +39,7 @@ function CityList({countrySelected, setCountrySelected}) {
                 <h2>Search cities in {countrySelected}</h2>
                 Buscar Ciutat: <input type="text" onChange={(e) => setSearchValue(e.target.value)}></input>
                 {citiesFilterd ? citiesFilterd.map((city) => (
-                    <City key={city.id} name={city.name} />
+                    <City key={city.id} city={city} />
                 )) : <p>No cities</p>}
             </div>
         );
