@@ -25,7 +25,7 @@ function MyCityList () {
             <div>State: {city.state_name}</div>
             <div>Country: {city.country_name}</div>
             <div>Coordinates: {round(city.latitude, 5)}, {round(city.longitude, 5)}</div>
-            <button onClick={() => removeCityFromContext(city)}>Remove</button> 
+            <button className="btn btn-danger" onClick={() => removeCityFromContext(city)}>Remove</button> 
           </li>
         ))}
       </ul>
